@@ -1,25 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { products } from '../models/Product';
+import { Product } from '../models/Product';
+import { CartService } from '../cart.service';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  products = products;
+  products: Product[] = [];
 
-  share() {
-    window.alert('The product has been shared!');
-  }
-  
-  onNotify() {
-    window.alert('You will be notified when the product goes on sale');
+  getProducts(): void {
+    this.productService
+      .getProducts()
+      .subscribe((products) => (this.products = products));
   }
 
-  constructor() { }
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    window.alert('Your product has been added to the cart!');
+  }
+  constructor(
+    private cartService: CartService,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
+    this.getProducts();
   }
-
 }

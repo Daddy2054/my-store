@@ -11,7 +11,7 @@ export class ProductService {
   /** GET products from the server */
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productsUrl).pipe(
-      tap((_) => console.log('fetched productss')),
+//      tap((_) => console.log('fetched products')),
       catchError(this.handleError<Product[]>('getProducts', []))
     );
   }
@@ -20,7 +20,7 @@ export class ProductService {
   getProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
     return this.http.get<Product>(url).pipe(
-      tap((_) => console.log(`fetched product id=${id}`)),
+//      tap((_) => console.log(`fetched product id=${id}`)),
       catchError(this.handleError<Product>(`getProduct id=${id}`))
     );
   }
@@ -45,7 +45,7 @@ export class ProductService {
   };
 
   /* GET products whose name contains search term */
-  searchProductes(term: string): Observable<Product[]> {
+  searchProducts(term: string): Observable<Product[]> {
     if (!term.trim()) {
       // if not search term, return empty product array.
       return of([]);

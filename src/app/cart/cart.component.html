@@ -11,16 +11,19 @@
 </div>
 <div>Total: {{ total | currency }}</div>
 
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+<app-customer-form-reactive></app-customer-form-reactive>
+<!--<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="name"> Name </label>
-    <input id="name" type="text" formControlName="name" />
+    <input id="name" type="text" formControlName="name" required/>
   </div>
 
   <div>
     <label for="address"> Address </label>
-    <input id="address" type="text" formControlName="address" />
+    <input id="address" type="text" formControlName="address" required/>
   </div>
 
   <button class="button" type="submit">Purchase</button>
 </form>
+-->

@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-app';
+  total:number = 0
+  cartTotal(total:number) {
+    this.total = total
+
+    console.log(this.total)
+  }
 }

@@ -7,14 +7,15 @@ import { CartService } from '../cart.service';
 })
 export class TopBarComponent implements OnInit {
   items = this.cartService.getItems();
-  total= this.cartService.countTotal(this.items);
+  total: number = 0;
  
 
 
   constructor(    public cartService: CartService) { }
 
   ngOnInit(): void {
-    this.total= this.cartService.countTotal(this.items);
+    this.cartService.currentCartTotal.subscribe((msg) => (this.total = msg));
+
   }
 
 }

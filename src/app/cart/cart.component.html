@@ -1,4 +1,4 @@
-<h3>Cart</h3>
+<h2>Cart</h2>
 
 <div class="cart-item" *ngFor="let item of items">
   <span>{{ item.name }}</span>
@@ -9,21 +9,7 @@
   <button class="btn btn-primary" (click)="minusOne(item)">-</button>
   <button class="btn btn-primary" (click)="remove(item)">Remove</button>
 </div>
-<div>Total: {{ total | currency }}</div>
+<div><h2>Total: {{ total | currency }}</h2></div>
 
 
 <app-customer-form-reactive></app-customer-form-reactive>
-<!--<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="name"> Name </label>
-    <input id="name" type="text" formControlName="name" required/>
-  </div>
-
-  <div>
-    <label for="address"> Address </label>
-    <input id="address" type="text" formControlName="address" required/>
-  </div>
-
-  <button class="button" type="submit">Purchase</button>
-</form>
--->

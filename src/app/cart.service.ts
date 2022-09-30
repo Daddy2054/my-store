@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Product } from './models/Product';
-//import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   items: Product[] = [];
-total:number =this.countTotal(this.items)
+
+  private cartTotal = new BehaviorSubject(0);
+  currentCartTotal = this.cartTotal.asObservable();
+
   addToCart(product: Product) {
-   
     this.items.push(product);
+    this.updateCartTotal(this.countTotal(this.items));
   }
 
   getItems() {
@@ -21,19 +24,18 @@ total:number =this.countTotal(this.items)
     this.items = [];
     return this.items;
   }
-  
+
   countTotal(items: Product[]): number {
     let total: number = 0;
     for (let index = 0; index < items.length; index++) {
       total = total + items[index]['price'] * items[index]['quantity'];
     }
-
+    this.cartTotal.next(total);
     return total;
   }
- 
 
-  
-  constructor(  
-//      private http: HttpClient
-      ) { }
+  updateCartTotal(total: number) {
+    this.cartTotal.next(total);
+  }
+  constructor() {}
 }

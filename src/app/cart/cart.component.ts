@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CartService } from '../cart.service';
 //import { FormBuilder } from '@angular/forms';
 import { Product } from '../models/Product';
-import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-cart',
@@ -11,19 +10,12 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class CartComponent implements OnInit {
   items = this.cartService.getItems();
-  total: number = this.cartService.countTotal(this.items);
-  @Input() item: Product;
-//  @Output() quantityChange= new EventEmitter<Product[]>();
 
-  /*  checkoutForm = this.formBuilder.group({
-    name: '',
-    address: '',
-  });
-*/
-  constructor(
-    public cartService: CartService
-  ) //private formBuilder: FormBuilder
-  {
+  //  total: number = this.cartService.countTotal(this.items);
+  total: number = 0;
+  @Input() item: Product;
+
+  constructor(private cartService: CartService) {
     this.item = {
       name: '',
       price: 1,
@@ -34,38 +26,22 @@ export class CartComponent implements OnInit {
     };
   }
 
-  /*getTotal(items: Product[]): number {
-    let total: number = 0;
-    for (let index = 0; index < items.length; index++) {
-      total = total + items[index]['price'] * items[index]['quantity'];
-    }
-
-    return total;
+  ngOnInit(): void {
+    this.cartService.currentCartTotal.subscribe((msg) => (this.total = msg));
+    this.cartService.updateCartTotal(this.cartService.countTotal(this.items));
   }
-
-  onSubmit(): void {
-    // Process checkout data here
-    this.items = this.cartService.clearCart();
-    console.warn('Your order has been submitted', this.checkoutForm.value);
-    this.checkoutForm.reset();
-  }
-*/
-  ngOnInit(): void {}
 
   plusOne(item: Product): void {
     item.quantity <= 9 ? (item.quantity += 1) : item.quantity;
-  //  this.total = this.getTotal(this.items);
-  this.total=this.cartService.countTotal(this.items);
-      }
+    this.cartService.countTotal(this.items);
+  }
   minusOne(item: Product): void {
     item.quantity >= 1 ? (item.quantity -= 1) : item.quantity;
-//    this.total = this.getTotal(this.items);
-    this.cartService.countTotal(this.items); 
+    this.cartService.countTotal(this.items);
   }
 
   remove(item: Product): void {
     this.items = this.items.filter((p) => p.id !== item.id);
-//    this.total = this.getTotal(this.items);
-this.cartService.countTotal(this.items);
+    this.cartService.countTotal(this.items);
   }
 }

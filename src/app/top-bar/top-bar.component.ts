@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
+
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
@@ -8,6 +9,7 @@ import { CartService } from '../cart.service';
 export class TopBarComponent implements OnInit {
   items = this.cartService.getItems();
   total: number = 0;
+  totalItems: number = 0;
  
 
 
@@ -15,6 +17,7 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.currentCartTotal.subscribe((msg) => (this.total = msg));
+    this.cartService.currentCartTotalItems.subscribe((msg) => (this.totalItems = msg));
 
   }
 

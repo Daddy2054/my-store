@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import {MatIconModule} from '@angular/material/icon';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ import { CartComponent } from './cart/cart.component';
 //import { ShippingComponent } from './shipping/shipping.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { CustomerFormReactiveComponent } from './customer-form-reactive/customer-form-reactive.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ HttpClientInMemoryWebApiModule.forRoot(
       { path: 'cart', component: CartComponent },
       //{ path: 'shipping', component: ShippingComponent },
     ]),
+    MatIconModule,
+    BrowserAnimationsModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

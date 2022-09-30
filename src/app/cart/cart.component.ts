@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CartService } from '../cart.service';
-//import { FormBuilder } from '@angular/forms';
 import { Product } from '../models/Product';
 
 @Component({
@@ -10,8 +9,6 @@ import { Product } from '../models/Product';
 })
 export class CartComponent implements OnInit {
   items = this.cartService.getItems();
-
-  //  total: number = this.cartService.countTotal(this.items);
   total: number = 0;
   @Input() item: Product;
 

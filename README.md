@@ -1,4 +1,4 @@
-# Image Processing API
+# MyStore
 
 Udacity Nanodegree: Full Stack Javascript Developer
 course: Angular Fundamentals student:daddy2054

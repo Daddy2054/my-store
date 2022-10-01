@@ -1,27 +1,64 @@
-# MyApp
+# Image Processing API
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
+Udacity Nanodegree: Full Stack Javascript Developer
+course: Angular Fundamentals student:daddy2054
 
-## Development server
+## Application Architecture
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This Single Page Application was written using Angular 14. I is a simple skeleton of e-commerce shop. Product list is retrieved from  _in-memory-data.service.ts_ using HttpClient service. Search bar is provided. Cart functionality and Order confirmation page are implemented. User authentication is implemented using Auth0 technology. Simple routing is implemented using RouterModule. Badge, showing item's amount in the cart is implemented using Angular Material collection.
 
-## Code scaffolding
+## How to Deploy
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+$ git clone https://github.com/Daddy2054/imageAPI.git
+$ cd imageAPI
+$ npm install
+$ npm run build
+$ npm run start
+```
 
-## Build
+## API Endpoint
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The API exposes 1 REST API endpoint:
 
-## Running unit tests
+| **Endpoint**      | **Description**                    | **Parameters**                                                  |
+| ----------------- | ---------------------------------- | --------------------------------------------------------------- |
+| `GET /api/images` | Activates serverside image resizer | ?filename="file name"&width="width in px"&height="height in px" |
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Invocation
 
-## Running end-to-end tests
+ ### default config:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+ server: http://localhost:3000
+ endpoint: /api/images
+ parameters:
+ filename=sammy.png (already provided in input folder)
+ width=100 (size in px)
+ height=100 (size in px)
+```
+http://localhost:3000/api/images/?filename=sammy.png&width=100&height=100
+```
+## How to use
 
-## Further help
+1. drop image file in folder "assets/full"
+2. make an request to an endpoint with correct parameters
+3. Find resized file in folder "assets/thumbnail/(new_size)"
+4. In case the resized file already exists, it will be in the response, without invocation of resizing function.
+5. in case the user's error, status code 400 will be returned with error message shown to the user.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## How to test
+
+```
+$ npm run test
+$ npm run prettier
+$ npm run lint
+```
+
+### What is tested
+
+1. endpoint: "/api"
+2. endpoint "/api/images"
+3. parameters missing
+4. error for file do not exist
+5. image processing
+6. incorrect parameters("a","0","-1")

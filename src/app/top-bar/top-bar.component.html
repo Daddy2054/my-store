@@ -1,12 +1,37 @@
 <a [routerLink]="['/']">
-    <h1>MyStore</h1>
-  </a>
-  
-  <!-- <a routerLink="/cart" class="button fancy-button"><i class="material-icons">shopping_cart</i>{{ total | currency }} Checkout</a> -->
-  <a routerLink="/cart" class="button fancy-button"> <mat-icon matBadge={{totalItems}} color="white" matBadgeColor="warn">shopping_cart</mat-icon>{{ total | currency }} Checkout</a> 
-  <!-- <mat-icon matBadge="60" color="white" matBadgeColor="accent">shopping_cart</mat-icon> 
-   
-  Copyright Google LLC. All Rights Reserved.
-  Use of this source code is governed by an MIT-style license that
-  can be found in the LICENSE file at https://angular.io/license
-  -->
+  <h1>MyStore</h1>
+</a>
+
+<ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+  <a
+    mat-flat-button
+    class="button fancy-button"
+    color="primary"
+    routerLink="/cart"
+  >
+    <mat-icon matBadge="{{ totalItems }}" matBadgeColor="warn"
+      >shopping_cart</mat-icon
+    >
+    {{ total | currency }} Checkout</a
+  >
+
+  <a
+    *ngIf="auth.user$ | async as user"
+    mat-flat-button
+    class="button fancy-button"
+    color="primary"
+    href="#"
+  >
+    <mat-icon>account_circle</mat-icon> {{ user.name }}
+    <mat-icon (click)="auth.logout({ returnTo: document.location.origin })"
+      >logout</mat-icon
+    ></a
+  >
+</ng-container>
+
+<ng-template #loggedOut>
+  <a mat-flat-button class="button fancy-button" color="primary" href="#">
+    <mat-icon (click)="auth.loginWithRedirect()">login</mat-icon></a
+  >
+</ng-template>
+`,

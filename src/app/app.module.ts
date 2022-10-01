@@ -7,6 +7,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
+import { AuthModule } from '@auth0/auth0-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,7 +52,12 @@ HttpClientInMemoryWebApiModule.forRoot(
     ]),
     MatIconModule,
     BrowserAnimationsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    
+    AuthModule.forRoot({
+      domain: 'dev-pdupjdfs.us.auth0.com',
+      clientId: 'euG9YyJW450yXZ2m5kdGQ0WfYZJdISAy'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -32,11 +32,13 @@
         <label for="address">Address</label>
         <input
           type="text"
-          id="name"
+          id="address"
           class="form-control"
           formControlName="address"
           required
         />
+
+ <app-ngmodelchange-component></app-ngmodelchange-component> 
 
         <div
           *ngIf="address.invalid && (address.dirty || address.touched)"
@@ -104,7 +106,6 @@
         <tr bgcolor="#1976d2" color="white">
           <td colspan="2">
             <b><span>Shipping Details:</span></b>
-            
           </td>
         </tr>
         <tr>

@@ -12,11 +12,12 @@ import { Product } from '../models/Product';
 export class CustomerFormReactiveComponent implements OnInit {
   customer = { name: '', address: '' };
   customerForm!: FormGroup;
- items = this.cartService.getItems();
+  items = this.cartService.getItems();
   total: number = 0;
   @Input() item: Product;
-orderDate= new Date();
-
+  orderDate = new Date();
+  
+  
   ngOnInit(): void {
     this.customerForm = new FormGroup({
       name: new FormControl(this.customer.name, [
@@ -38,12 +39,12 @@ orderDate= new Date();
     return this.customerForm.get('address')!;
   }
   submitForm(): void {
-//    console.log(this.customer.name);
-  //  console.log(this.customer.address);
- //   console.log(this.items);
+    //    console.log(this.customer.name);
+    //  console.log(this.customer.address);
+    //   console.log(this.items);
     this.cartService.currentCartTotal.subscribe((msg) => (this.total = msg));
- //   console.log(this.total);
-   // this.cartService.updateCartTotal(this.cartService.countTotal(this.items));
+    //   console.log(this.total);
+    // this.cartService.updateCartTotal(this.cartService.countTotal(this.items));
   }
 
   constructor(private cartService: CartService) {

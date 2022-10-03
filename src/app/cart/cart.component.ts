@@ -36,9 +36,15 @@ export class CartComponent implements OnInit {
     item.quantity >= 1 ? (item.quantity -= 1) : item.quantity;
     this.cartService.countTotal(this.items);
   }
-
+/*
   remove(item: Product): void {
     this.items = this.items.filter((p) => p.id !== item.id);
     this.cartService.countTotal(this.items);
   }
+*/
+  remove2(item: Product): void {
+    this.items = this.items.filter((p) => p.id !== item.id);
+    this.cartService.countTotal(this.items);
+  }
+
 }

@@ -8,6 +8,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
 import { AuthModule } from '@auth0/auth0-angular';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { CartComponent } from './cart/cart.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { CustomerFormReactiveComponent } from './customer-form-reactive/customer-form-reactive.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RemoveButtonComponent } from './remove-button/remove-button.component';
+import { NgmodelchangeComponent } from './ngmodelchange/ngmodelchange.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //    ShippingComponent,
     ProductSearchComponent,
     CustomerFormReactiveComponent,
+    RemoveButtonComponent,
+    NgmodelchangeComponent,
     
   ],
   imports: [
@@ -53,6 +58,7 @@ HttpClientInMemoryWebApiModule.forRoot(
     MatIconModule,
     BrowserAnimationsModule,
     MatBadgeModule,
+    FormsModule,
     
     AuthModule.forRoot({
       domain: 'dev-pdupjdfs.us.auth0.com',
